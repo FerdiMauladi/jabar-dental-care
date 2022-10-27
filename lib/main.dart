@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:jabardentalcare/di/global_binding.dart';
 import 'package:jabardentalcare/screen/onboarding/onboarding_screen.dart';
 
 void main() {
@@ -9,6 +10,7 @@ void main() {
     statusBarIconBrightness: Brightness.dark,
   ));
   WidgetsFlutterBinding.ensureInitialized();
+  GlobalBinding().dependencies();
   runApp(const JabarDentalCare());
 }
 

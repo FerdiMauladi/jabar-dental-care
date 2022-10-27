@@ -11,6 +11,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      physics: const BouncingScrollPhysics(),
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -29,8 +30,8 @@ class _HomepageScreenState extends State<HomepageScreen> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: <Color>[
-                    Color(0xFF835AA4).withOpacity(0.7),
-                    Color(0xFF525AB0).withOpacity(0.7),
+                    const Color(0xFF835AA4).withOpacity(0.7),
+                    const Color(0xFF525AB0).withOpacity(0.7),
                   ],
                   tileMode: TileMode.mirror,
                 ),
@@ -49,7 +50,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
                   Text(
-                    'Jadwal Dokter minggu ini',
+                    'Jadwal Dokter hari ini',
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -69,14 +70,17 @@ class _HomepageScreenState extends State<HomepageScreen> {
             const SizedBox(
               height: 5.0,
             ),
-            Expanded(
+            SizedBox(
+              height: 300,
               child: ListView.builder(
                 itemCount: 5,
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return Padding(
+                  return Container(
                     padding: const EdgeInsets.all(8.0),
+                    width: 230,
+                    height: 300,
                     child: Card(
                       elevation: 8,
                       shape: RoundedRectangleBorder(
@@ -85,9 +89,9 @@ class _HomepageScreenState extends State<HomepageScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
+                              alignment: Alignment.center,
                               width: 180,
                               height: 140,
                               decoration: BoxDecoration(
@@ -104,7 +108,6 @@ class _HomepageScreenState extends State<HomepageScreen> {
                                 right: 4.0,
                               ),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text(
                                     'Dr. Ari Maulana',
@@ -115,28 +118,46 @@ class _HomepageScreenState extends State<HomepageScreen> {
                                     ),
                                   ),
                                   const SizedBox(
-                                    height: 5.0,
+                                    height: 8.0,
                                   ),
                                   const Text(
-                                    'Nama Keluhan 1',
+                                    'Sakit Gigi',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                       color: Colors.grey,
                                       fontSize: 15,
                                     ),
                                   ),
                                   const SizedBox(
-                                    height: 5.0,
+                                    height: 15.0,
                                   ),
-                                  Row(
-                                    children: const [
-                                      Text(
-                                        'Nama Keluhan 1',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 15,
+                                  SizedBox(
+                                    height: 35,
+                                    width: 120,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            const Color(0xFF0C3DF3),
+                                        textStyle: const TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        elevation: 2,
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(8.0),
+                                          ),
                                         ),
                                       ),
-                                    ],
+                                      onPressed: () {},
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Text(
+                                          'Booking',
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -148,6 +169,93 @@ class _HomepageScreenState extends State<HomepageScreen> {
                   );
                 },
               ),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 25.0,
+        ),
+        Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Produk Populer',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 5.0,
+            ),
+            SizedBox(
+              height: 235,
+              child: ListView.builder(
+                itemCount: 5,
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: 230,
+                    height: 235,
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      elevation: 8,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8.0),
+                        ),
+                        side: BorderSide(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: 180,
+                              height: 140,
+                              decoration: const BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(8.0),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: const Text(
+                                  'Nama Item',
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(
+              height: 15.0,
             ),
           ],
         ),
